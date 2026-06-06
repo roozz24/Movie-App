@@ -1,74 +1,37 @@
 import MovieCard from "../components/MovieCard"
+import { useState, useEffect } from "react"
 
 function Home() {
+  const [movies, setMovies] = useState([])
 
-  const movies = [
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-    {
-      poster: "https://cdng.europosters.eu/pod_public/1300/263043.jpg",
-      name: "Django Unchained",
-      release_date: "25-12-2012"
-    },
-  ]
+  useEffect(() => {
+    fetch("https://api.themoviedb.org/3/movie/popular?api_key=3H4ZCi9mhZsFpowmmVhUh1NF1C5NoSPPvH", {
+      headers: {
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWMxMjY0NmU2MWVjMzZhYmMwN2E3MTBmZjE2OTM3NiIsIm5iZiI6MTc4MDcyNzY3MS42NTYsInN1YiI6IjZhMjNiZjc3OTY4YzAxMzc5MjgxNzdmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Z9_KLgKrQ3wdrUDlRCmN-5rAjm1fIRA6TTM_loXhJoc",
+        accept: "application/json",
+      },
+    }
+
+    )
+      .then((response) => response.json())
+      .then((data) => setMovies(data.results))
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
-    <div className="pt-16 p-4">
+    <div className="pt-16 p-4 bg-black">
       {/* search box */}
-      <input type="text" placeholder="Search Movies" className="p-1 w-3/4 md:w-1/2 border z-10 rounded-sm bg-black opacity-60 text-white fixed top-16 left-1/2 transform -translate-x-1/2" />
+      <input type="text" placeholder="Search Movies" className="p-1 w-3/4 md:w-1/2 border z-10 rounded-sm mt-2 bg-black opacity-60 text-white fixed top-16 left-1/2 transform -translate-x-1/2" />
       {/* Movie container */}
-      <div className="Movie-container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16">
-        {movies.map(movie => {
+      <div className="Movie-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 gap-y-14 mt-16">
+        {movies.map((movie) => {
           return <MovieCard key={movie.id} movie={movie} />
-        })};
+        })}
       </div>
       {/* Pagination */}
       <div className="flex justify-between mt-5">
-        <button className="p-2 bg-red-800 text-white font-bold rounded">Previous</button>
-        <button className="p-2 bg-red-800 text-white font-bold rounded">Next</button>
+        <button className="p-2 bg-white text-black font-bold rounded">Previous</button>
+        <button className="p-2 bg-white text-black font-bold rounded">Next</button>
       </div>
     </div>
   )
