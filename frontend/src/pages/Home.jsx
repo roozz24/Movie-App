@@ -1,7 +1,7 @@
 import MovieCard from "../components/MovieCard"
 import { useState, useEffect } from "react"
 
-function Home() {
+function Home({ toggleWatchlist, isInWatchlist }) {
   const [movies, setMovies] = useState([])
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState("")
@@ -38,7 +38,11 @@ function Home() {
       {/* Movie container */}
       <div className="Movie-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 gap-y-6 mt-16">
         {movies.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie} />
+          return <MovieCard
+            toggleWatchlist={toggleWatchlist}
+            isInWatchlist={isInWatchlist}
+            key={movie.id}
+            movie={movie} />
         })}
       </div>
       {/* Pagination */}
