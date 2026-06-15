@@ -22,14 +22,6 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      {/* Navbar */}
-      {/* <header className="w-full bg-[#c58b00] shadow-lg shadow-black/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-xl sm:text-2xl font-extrabold tracking-[0.2em] text-black">
-            MOVIEZAPP
-          </h1>
-        </div>
-      </header> */}
 
       {/* Centered Sign Up Card */}
       <main className="flex-1 flex items-center justify-center mt-10 px-4 py-10 sm:py-16">
@@ -220,7 +212,7 @@ const SignUp = () => {
               href="#"
               className="text-[#c58b00] hover:text-[#e0a829] font-semibold transition-colors duration-300"
             >
-              Sign in
+              Login
             </a>
           </p>
         </div>

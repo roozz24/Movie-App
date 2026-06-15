@@ -20,9 +20,7 @@ function Home({ toggleWatchlist, isInWatchlist }) {
         Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWMxMjY0NmU2MWVjMzZhYmMwN2E3MTBmZjE2OTM3NiIsIm5iZiI6MTc4MDcyNzY3MS42NTYsInN1YiI6IjZhMjNiZjc3OTY4YzAxMzc5MjgxNzdmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Z9_KLgKrQ3wdrUDlRCmN-5rAjm1fIRA6TTM_loXhJoc",
         accept: "application/json",
       },
-    }
-
-    )
+    })
       .then((response) => response.json())
       .then((data) => setMovies(data.results))
       .catch((err) => console.log(err))
