@@ -14,8 +14,9 @@ const SignUp = () => {
   };
 
   function createAccount(){
-    createUserWithEmailAndPassword(auth, mail, pass)
-    navigate("/Login")
+    createUserWithEmailAndPassword(auth, mail, pass).then(() => {
+      navigate("/Login")
+    })
   }
 
   return (
@@ -90,8 +91,7 @@ const SignUp = () => {
           <p className="text-center text-sm text-gray-400 mt-6">
             Already have an account?{" "}
             <a
-              href="#"
-              className="text-[#c58b00] hover:text-[#e0a829] font-semibold transition-colors duration-300"
+              className="text-[#c58b00] hover:text-[#e0a829] font-semibold transition-colors duration-300 cursor-pointer"
               onClick={() => {navigate("/Login")}}
             >
               Login
