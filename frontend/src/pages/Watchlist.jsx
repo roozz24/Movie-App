@@ -1,14 +1,26 @@
 import Genre from "../components/Genre"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import auth from "../firebase/Firebase"
 import WatchlistMovieCard from "../components/WatchlistMovieCard"
 
 function Watchlist({ watchlist, toggleWatchlist, isInWatchlist }) {
 
-  const movieList = watchlist
-  const [search, setSearch] = useState("")
+  const movieList = watchlist;
+  const [search, setSearch] = useState("");
+  const user = auth.currentUser;
+  const navigate = useNavigate();
   const filteredMovies = movieList.filter((movie) =>
     movie.title.toLowerCase().includes(search.toLowerCase())
-  )
+  );
+
+  useEffect(() => {
+    if(user){
+      navigate("/Watchlist")
+    } else {
+      navigate("/")
+    }
+  }, [])
 
   return (
     <div className="min-h-screen pt-16 p-4 bg-black">

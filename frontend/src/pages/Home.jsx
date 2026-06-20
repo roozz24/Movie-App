@@ -1,10 +1,14 @@
 import MovieCard from "../components/MovieCard"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
+import auth from "../firebase/Firebase"
 
 function Home({ toggleWatchlist, isInWatchlist }) {
-  const [movies, setMovies] = useState([])
-  const [page, setPage] = useState(1)
-  const [search, setSearch] = useState("")
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const user = auth.currentUser;
 
   console.log(page)
 
@@ -24,6 +28,12 @@ function Home({ toggleWatchlist, isInWatchlist }) {
       .then((response) => response.json())
       .then((data) => setMovies(data.results))
       .catch((err) => console.log(err))
+
+      if(user) {
+        navigate("/Home")
+      }else {
+        navigate("/")
+      }
   }, [page, search])
 
   return (

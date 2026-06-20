@@ -1,18 +1,36 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { signOut } from 'firebase/auth';
+import auth from '../firebase/Firebase';
 
 function Navbar() {
 
-  const {count, setCount} = 0 
+  const navigate = useNavigate();
+  const user = auth.currentUser;
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      navigate("/")
+    })
+  }
 
   return (
     <nav className="bg-yellow-600 text-white p-4 flex justify-between items-center z-10 fixed w-full top-0">
-      <Link to="/" className="font-bold text-lg">Moviezapp</Link>
+      <p onClick={() => { navigate("/Home") }} className="font-bold text-lg cursor-pointer">Moviezapp</p>
       <div className="flex gap-4">
-        <Link to="/Watchlist" className="font-bold text-lg">Watchlist{count}</Link>
-        <Link to="/Signin" className="font-bold text-lg">Sign in</Link>
+        <p onClick={() => { navigate("/Watchlist") }} className="font-bold text-lg cursor-pointer">Watchlist</p>
+        <div>
+          {user ?
+            <p onClick={logout} className="font-bold text-lg cursor-pointer">Log out</p> :
+            <p className="font-bold text-lg cursor-pointer">Sign in</p>
+          }
+        </div>
+
       </div>
     </nav>
   )
 }
 
 export default Navbar
+

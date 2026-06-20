@@ -4,6 +4,7 @@ import Navbar from './pages/Navbar';
 import Home from './pages/Home';
 import Watchlist from './pages/Watchlist';
 import Signin from './pages/Signin';
+import Login from './pages/Login';
 
 function App() {
 
@@ -30,12 +31,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home
+          <Route path="/" element={<Signin />} />
+          <Route path="/Home" element={<Home
             toggleWatchlist={toggleWatchlist}
             isInWatchlist={isInWatchlist}
           />} />
           <Route path="/Watchlist" element={<Watchlist watchlist={watchlist} toggleWatchlist={toggleWatchlist} />} />
-          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
